@@ -22,3 +22,13 @@ fi
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
+
+# history settings
+shopt -s histappend  # append, not overwrite on session close
+shopt -s cmdhist # multiline commands to one line
+HISTFILESIZE=1000000 # file size
+HISTSIZE=1000000 # session history size
+HISTCONTROL=ignoreboth # duplicates and lines starting with whitespace
+HISTIGNORE='bg:fg:history'
+HISTTIMEFORMAT='%F %T '
+PROMPT_COMMAND='history -a' # store immediately, not when session ends

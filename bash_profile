@@ -12,11 +12,12 @@ function get_src_dir() {
 
 get_src_dir
 
-if [ -f ${SRC_DIR}/private_vars ]; then
-	source ${SRC_DIR}/private_vars
-else
-	echo "not there.  SRC_DIR: $SRC_DIR"
-fi
+for x in ${SRC_DIR}/private_vars ${SRC_DIR}/bash_aliases; do
+	if [ -f ${x} ]; then
+		source ${x}
+	fi
+done
+
 
 # bash completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then

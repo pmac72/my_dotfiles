@@ -1,4 +1,6 @@
-PATH="~/bin:/usr/local/bin:$PATH"
+export PATH="~/bin:/usr/local/bin:/usr/local/opt/ruby/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/readline/lib"
+export CPPFLAGS="-I/usr/local/opt/readline/include"
 
 function get_src_dir() {
 	local source="${BASH_SOURCE[0]}"

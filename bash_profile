@@ -1,6 +1,10 @@
 [ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)"
 
 export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/ruby/bin:$PATH"
+if [ -d /usr/local/opt/curl/bin ]; then
+	export PATH="/usr/local/opt/curl/bin:$PATH"
+fi
+
 export LDFLAGS="-L/usr/local/opt/readline/lib"
 export CPPFLAGS="-I/usr/local/opt/readline/include"
 
@@ -36,6 +40,8 @@ which kubectl > /dev/null && source <(kubectl completion bash)
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
+# bash-completion@2
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 # history settings
 shopt -s histappend  # append, not overwrite on session close

@@ -36,12 +36,22 @@ which aws_completer > /dev/null && complete -C aws_completer aws
 complete -C '/usr/local/bin/aws2_completer' aws2
 which terraform > /dev/null && complete -C terraform terraform
 which kubectl > /dev/null && source <(kubectl completion bash)
-# removed source `brew --repository`/Library/Contributions/brew_bash_completion.sh
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+
+
+eval "$(brew shellenv)" # this is key so that HOMEBREW_REPOSITORY is set
+if type brew &>/dev/null
+then
+  HOMEBREW_PREFIX="$(brew --prefix)"
+  if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
+  then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+  else
+    for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*
+    do
+      [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
+    done
+  fi
 fi
-# bash-completion@2
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 # history settings
 shopt -s histappend  # append, not overwrite on session close

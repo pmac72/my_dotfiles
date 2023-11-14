@@ -53,6 +53,11 @@ then
   fi
 fi
 
+# Unless HOMEBREW_NO_INSTALL_CLEANUP is set, brew cleanup will be run for the installed formulae or, every 30 days, for all formulae
+export HOMEBREW_NO_INSTALL_CLEANUP=1
+# if formula is already installed "brew install" should do nothing (if this is not set it will upgrade)
+export HOMEBREW_NO_INSTALL_UPGRADE=1
+
 # history settings
 shopt -s histappend  # append, not overwrite on session close
 shopt -s cmdhist # multiline commands to one line
@@ -83,4 +88,3 @@ export COPYFILE_DISABLE=1
 export CLICOLOR=1
 # export LSCOLORS=Exfxcxdxbxegedabagacad
 export LSCOLORS=ExFxBxDxCxegedabagacad
-

@@ -98,3 +98,14 @@ export GPG_TTY=$(tty)
 # else
 #     eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
 # fi
+
+# PYENV
+# from https://github.com/pyenv/pyenv-virtualenv/issues/401#issuecomment-903664058
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# suppress annoying message about prompt change going away (starship takes care of it for me)
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1

@@ -112,3 +112,6 @@ export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 # set this so colima acts more like docker
 export DOCKER_HOST="unix://${HOME}/.colima/default/docker.sock"
+
+# direnv
+eval "$(direnv hook bash)"

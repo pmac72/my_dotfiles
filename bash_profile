@@ -88,3 +88,13 @@ export COPYFILE_DISABLE=1
 export CLICOLOR=1
 # export LSCOLORS=Exfxcxdxbxegedabagacad
 export LSCOLORS=ExFxBxDxCxegedabagacad
+
+# GPG Agent
+export GPG_TTY=$(tty)
+# may not be needed anymore:
+# if [ -f ~/.gnupg/.gpg-agent-info ] && [ -n "$(pgrep gpg-agent)" ]; then
+#     source ~/.gnupg/.gpg-agent-info
+#     export GPG_AGENT_INFO
+# else
+#     eval $(gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
+# fi

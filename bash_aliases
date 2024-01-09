@@ -10,7 +10,6 @@ alias egrep="egrep --color --exclude-dir='.git' --exclude-dir='.terraform'"
 
 alias docker_pull_all="docker images --format '{{.Repository}}:{{.Tag}}' | grep -v '<none>' | sort | uniq |  xargs -L1  docker pull"
 
-alias git_grep_all="git branch -a | tr -d \* | sed '/->/d' | xargs git grep"
 
 alias brewski='brew update && brew upgrade && brew cleanup && brew doctor'
 
@@ -21,7 +20,10 @@ alias ttv="terraform validate"
 alias ttp="terraform plan"
 alias tta="terraform apply"
 
-alias git-push-what="git diff --stat --cached origin/\$(git rev-parse --abbrev-ref HEAD)"
+alias git-default-branch="git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'"
+alias git-grep-all="git branch -a | tr -d \* | sed '/->/d' | xargs git grep"
 alias git-push-what-diff="git diff --cached origin/\$(git rev-parse --abbrev-ref HEAD)"
+alias git-push-what="git diff --stat --cached origin/\$(git rev-parse --abbrev-ref HEAD)"
+alias git-who="git shortlog -s -n --no-merges | tac"
 
 alias lsusb="system_profiler SPUSBDataType"

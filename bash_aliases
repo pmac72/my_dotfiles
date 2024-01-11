@@ -27,3 +27,9 @@ alias git-push-what="git diff --stat --cached origin/\$(git rev-parse --abbrev-r
 alias git-who="git shortlog -s -n --no-merges | tac"
 
 alias lsusb="system_profiler SPUSBDataType"
+
+# get egress ip from dns
+alias wanip='dig @resolver4.opendns.com myip.opendns.com +short' 
+alias wanip4='dig @resolver4.opendns.com myip.opendns.com +short -4'
+# not working anymore alias wanip6='dig @resolver1.ipv6-sandbox.opendns.com AAAA myip.opendns.com +short -6'
+alias wanip6='dig @ns1.google.com TXT o-o.myaddr.l.google.com +short -6 | tr -d \"'

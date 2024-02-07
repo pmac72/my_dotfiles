@@ -6,10 +6,15 @@ config {
   disabled_by_default = false
 }
 
+plugin "terraform" {
+  enabled = true
+  preset  = "recommended"
+}
+
 plugin "aws" {
   enabled = true
   deep_check = true
-  version = "0.28.0"
+  version = "0.29.0"
   source  = "github.com/terraform-linters/tflint-ruleset-aws"
 }
 

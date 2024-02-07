@@ -19,6 +19,7 @@ alias ttf="terraform fmt -diff"
 alias ttv="terraform validate"
 alias ttp="terraform plan"
 alias tta="terraform apply"
+alias tfd="terraform-docs markdown --output-file=README.md ."
 
 alias git-default-branch="git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'"
 alias git-grep-all="git branch -a | tr -d \* | sed '/->/d' | xargs git grep"

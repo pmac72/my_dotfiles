@@ -25,6 +25,7 @@ alias git-grep-all="git branch -a | tr -d \* | sed '/->/d' | xargs git grep"
 alias git-push-what-diff="git diff --cached origin/\$(git rev-parse --abbrev-ref HEAD)"
 alias git-push-what="git diff --stat --cached origin/\$(git rev-parse --abbrev-ref HEAD)"
 alias git-who="git shortlog -s -n --no-merges | tac"
+alias git-stash-diff="git stash show -p" # always forget this
 
 alias lsusb="system_profiler SPUSBDataType"
 

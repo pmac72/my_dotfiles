@@ -1,8 +1,18 @@
+if [ -x /opt/homebrew/bin/brew ]; then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+	eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+if [ -d "${HOMEBREW_PREFIX}/bin" ]; then
+	export PATH="${HOMEBREW_PREFIX}/bin:$PATH"
+fi
+
 [ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)"
 
 export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/local/opt/ruby/bin:$PATH"
-if [ -d /usr/local/opt/curl/bin ]; then
-	export PATH="/usr/local/opt/curl/bin:$PATH"
+if [ -d "${HOMEBREW_PREFIX}/opt/curl/bin" ]; then
+	export PATH="${HOMEBREW_PREFIX}/opt/curl/bin:$PATH"
 fi
 
 export LDFLAGS="-L/usr/local/opt/readline/lib"
@@ -38,7 +48,7 @@ which terraform > /dev/null && complete -C terraform terraform
 which kubectl > /dev/null && source <(kubectl completion bash)
 
 
-eval "$(brew shellenv)" # this is key so that HOMEBREW_REPOSITORY is set
+# eval "$(brew shellenv)" # this is key so that HOMEBREW_REPOSITORY is set (now at top of this script)
 if type brew &>/dev/null
 then
   HOMEBREW_PREFIX="$(brew --prefix)"
@@ -70,8 +80,8 @@ PROMPT_COMMAND='history -a' # store immediately, not when session ends
 
 # NODE (NVM)
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" ] && . "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm" ] && . "${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 export FIGNORE=git:DS_Store:.terraform
 

@@ -3,7 +3,7 @@ command_timeout = 750
 
 [directory]
 truncation_length = 100
-truncate_to_repo = false
+truncate_to_repo = true
 style = "yellow"
 # format = "[:$path]($style)[$read_only]($read_only_style) "
 

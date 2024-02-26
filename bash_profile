@@ -111,20 +111,22 @@ export GPG_TTY=$(tty)
 
 # PYENV
 # from https://github.com/pyenv/pyenv-virtualenv/issues/401#issuecomment-903664058
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-
-# suppress annoying message about prompt change going away (starship takes care of it for me)
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+if [ -n "$(which pyenv)" ]; then
+	export PYENV_ROOT="$HOME/.pyenv"
+	export PATH="$PYENV_ROOT/bin:$PATH"
+	eval "$(pyenv init --path)"
+	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
+	
+	# suppress annoying message about prompt change going away (starship takes care of it for me)
+	export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+fi
 
 # set this so colima acts more like docker
 export DOCKER_HOST="unix://${HOME}/.colima/default/docker.sock"
 
 # direnv
-eval "$(direnv hook bash)"
+which direnv > /dev/null && eval "$(direnv hook bash)"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
